@@ -77,13 +77,21 @@ def generate_mcqs(vectorstore, query=None):
     except Exception as e:
         raise ProjectException(e, sys)
 
+def generate():
+    try:
+        vectorstore = get_vectorstore()
+        topic = input("Topic (leave empty for all data): ").strip()
 
-if __name__ == "__main__":
-    vectorstore = get_vectorstore()
+        if topic:
+            topic_mcqs = generate_mcqs(vectorstore, query=topic)
+            print(f"\nMCQs about '{topic}':\n", topic_mcqs)
+        else:
+            all_mcqs = generate_mcqs(vectorstore)
+            print("MCQs from full data:\n", all_mcqs)
 
-    all_mcqs = generate_mcqs(vectorstore)
-    print("MCQs from full data:\n", all_mcqs)
+    except ProjectException as e:
+        print("Error during MCQ generation:", e)
+    except Exception as e:
+        print("Unexpected error:", e)
 
-    """ topic = "Neural Networks"
-    topic_mcqs = generate_mcqs(vectorstore, query=topic)
-    print(f"\nMCQs about '{topic}':\n", topic_mcqs) """
+

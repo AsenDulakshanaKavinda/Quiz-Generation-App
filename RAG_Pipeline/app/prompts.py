@@ -3,7 +3,7 @@ from langchain_core.prompts import PromptTemplate
 prompt_template = """
 You are an expert educational content creator.
 
-Generate as many high-quality multiple-choice questions (MCQs) as possible (up to 10) based on the following text:
+Generate as many high-quality multiple-choice questions (MCQs) as possible (up to 3) based on the following text:
 
 {text}
 
